@@ -1,0 +1,108 @@
+
+
+<%- include("partials/header.ejs") %>
+
+<link rel="stylesheet" href="/styles/posts.css">
+   
+
+
+
+
+
+<% if (locals.blogs && blogs.length !== 0) { %>
+  <div class="container">
+    <% for (let i = 0; i < blogs.length; i++) { %>
+      <form action="/update" method="POST">
+        <div class="card">
+          <div class="card__header">
+            <% if (blogs[i].category === 'technology') { %>
+              <img src="https://source.unsplash.com/600x400/?computer" alt="card__image" class="card__image" width="600">
+            <% } else if (blogs[i].category === 'food') { %>
+              <img src="https://source.unsplash.com/600x400/?food" alt="card__image" class="card__image" width="600">
+            <% } else if (blogs[i].category === 'automobile') { %>
+              <img src="https://source.unsplash.com/600x400/?car,automobile" alt="card__image" class="card__image" width="600">
+            <% } %>
+          </div>
+          <div class="card__body">
+            <% if (blogs[i].category) { %>
+              <span class="tag tag-<%= blogs[i].category %>"><%= blogs[i].category.charAt(0).toUpperCase() + blogs[i].category.slice(1) %></span>
+            <% } %>
+            <h4><%= blogs[i].title %></h4>
+            <p><%= blogs[i].text %></p>
+            
+            <input type="hidden" name="title" value="<%= blogs[i].title %>">
+            <input type="hidden" name="category" value="<%= blogs[i].category %>">
+          </div>
+          <div class="card__footer">
+            <div class="user">
+              <img src="https://i.pravatar.cc/40?img=<%= i %>" alt="user__image" class="user__image">
+              <div class="user__info">
+                <h5><%= blogs[i].name %></h5>
+                <small id="p<%= i %>"></small>
+                <script>
+                  var date = new Date();
+                  var current_time = date.getMinutes() + " min ago";
+                  document.getElementById("p<%= i %>").innerHTML = current_time;
+                </script>
+                <input type="hidden" name="text" value="<%= blogs[i].text %>">
+                <input type="hidden" name="name" value="<%= blogs[i].name %>">
+                <input type="hidden" name="idx" value="<%= i %>">
+                <button class="button1" type="submit">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    <% } %>
+  </div>
+<% } %>
+
+
+
+
+
+
+
+
+
+
+   
+    
+
+ 
+
+
+
+
+
+  
+
+    <div class="wrapper">
+        <h1></h1>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+    </div>
+
+  
+
+
+
+
+
+<%- include("partials/footer.ejs") %>
+
+
+
